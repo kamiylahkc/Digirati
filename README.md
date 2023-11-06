@@ -2,12 +2,11 @@
 Solution for Digitari ML / Python Developer Tech Test
 
 ### How to set up environment and run application
-- Please make sure to install all required packages using the requirements.txt file. 
-- Additionally please install the following by running 'python -m spacy download en_core_web_md' in your terminal (Please visit https://spacy.io/usage for the correct commands for your OS)
-- Unzip the stanford-ner-4.2.0.zip file into the outermost directory
-- Lastly please ensure Java installed on your machine and that JAVAHOME is set in your PATH. Change the java_path in line 12 of solution/utils.py if need be to ensure the models run
-- Run by activating the virtual environment, running 'python solution/api.py' in your terminal from the digitari folder and sending a GET request to 'http://127.0.0.1:5000/process_text' along with your posted json (I used the postman app). 
-- Feel free to take a look at my experiments folder where I code through some alternate methods 
+- Please make sure to install all required packages using the requirements.txt file.
+- Additionally, unzip the stanford-ner-4.2.0.zip file into the outermost directory. You can download this zip file from https://nlp.stanford.edu/software/CRF-NER.html by clicking on 'Download Stanford Named Entity Recognizer version 4.2.0'.
+- Lastly please ensure Java installed on your machine and JAVAHOME is set in your environment variables. Change the java_path in line 12 of solution/utils.py if need be to ensure the Stanford model runs
+- Run by activating the virtual environment, run 'python solution/api.py' in your terminal from the digitari_ directory (outmost directory) and send a GET request to http://127.0.0.1:5000/process_text along with your posted json (I used the postman app). 
+- Feel free to take a look at my experiments folder where I code through some other methods before deciding on my solution.
 
 
 To Note:

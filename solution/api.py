@@ -9,11 +9,11 @@ def process_text():
         data = request.json
 
         if 'URL' not in data.keys():
-            return jsonify({"code": 400, 'error': 'Missing URL in the request'})
+            return jsonify({'code': 400, 'error': 'Missing URL in the request'})
 
         url = data.get('URL')
         result = {
-            "url": url,
+            'url': url,
         }
         
         # get metadata and add to response
@@ -25,15 +25,15 @@ def process_text():
         people = get_response(url)
 
         if people == ['Invalid URL']:
-            return jsonify({"code": 400, 'error': 'Invalid URL in the request'})
+            return jsonify({'code': 400, 'error': 'Invalid URL in the request'})
         
         # add to response
-        result["people"] = people
+        result['people'] = people
 
         return jsonify(result)
     
     except Exception as e:
-        return jsonify({"error": e})
+        return jsonify({'error': e})
 
 if __name__ == '__main__':
     app.run()

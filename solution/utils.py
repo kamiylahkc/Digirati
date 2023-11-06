@@ -24,11 +24,11 @@ def preprocess_text(raw_text:str):
     Removing unnecessary characters and white space
     Also removing 's as this seems to confuse the NER model
     """
-    response_pretty = BeautifulSoup(raw_text, "html.parser")
+    response_pretty = BeautifulSoup(raw_text, 'html.parser')
     page_text = response_pretty.get_text()
-    page_text = re.sub(r"[^\x00-\x7F]+", "", page_text)
-    page_text = page_text.replace("\r\n", " ").replace("'s", " ")
-    page_text = re.sub(r"\s+", " ", page_text)
+    page_text = re.sub(r'[^\x00-\x7F]+', '', page_text)
+    page_text = page_text.replace('\r\n', ' ').replace('\'s', ' ')
+    page_text = re.sub(r'\s+', ' ', page_text)
 
 
 def remove_stopwords(raw_text:str):
@@ -111,7 +111,7 @@ def get_section_of_text(preprocessed_text,start, end):
     before_name = preprocessed_text[:start].split()[-100:]
     after_name = preprocessed_text[end:].split()[:101]
 
-    return " ".join(before_name) + " ".join(after_name)
+    return ' '.join(before_name) + ' '.join(after_name)
 
 def get_associated_places_counts(person_counts:list, preprocessed_text:str, nlp):
     """
@@ -138,7 +138,7 @@ def order_associated_places(full_counts:list):
     Sorting list of places by the number of times it appears with each person
     """
     for person in full_counts:
-        person["associated_places"] = sorted(person["associated_places"], key=lambda x: x["count"], reverse=True)
+        person['associated_places'] = sorted(person['associated_places'], key=lambda x: x['count'], reverse=True)
 
     return full_counts
 
@@ -150,16 +150,16 @@ def format_list(full_counts:list):
 
     for i, entry in enumerate(full_counts):
         people.append({})
-        people[i]["name"] = entry[0]
-        people[i]["count"] = entry[1]['count']
-        people[i]["associated_places"] = []
+        people[i]['name'] = entry[0]
+        people[i]['count'] = entry[1]['count']
+        people[i]['associated_places'] = []
 
         for entry_ in entry[1]['associated_places'].items():
             place = {}
             k, v = entry_
             place['name'] = k
             place['count'] = v
-            people[i]["associated_places"].append(place)
+            people[i]['associated_places'].append(place)
     people = order_associated_places(people)
     return people
 
@@ -194,7 +194,7 @@ def get_response(url:str):
     person_counts = get_person_counts(fullnames_and_positions)
 
     # load spacy model for NER on locations
-    nlp = spacy.load("en_core_web_md")
+    nlp = spacy.load('en_core_web_md')
 
     # get places associated with each person and their counts
     persons_and_associated_places = get_associated_places_counts(person_counts, filtered_text, nlp)
